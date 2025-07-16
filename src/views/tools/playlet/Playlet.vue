@@ -1,10 +1,20 @@
 <template>
 	<div class="main">
-		<van-search v-model="value" placeholder="请输入搜索关键词" @search="onSearch" />
+		<van-search v-model="value" placeholder="请输入搜索关键词" @search="onSearch" @cancel="onCancel" @clear="onCancel" />
 		<div class="list">
 			<div class="item" v-for="(item, index) in list" :key="index">
 				<div class="name">{{ item.name }}</div>
-				<van-button type="primary" size="small" @click="copy(item.viewlink)">复制链接</van-button>
+				<div class="desc">
+					<div class="title">更新时间：</div>
+					<div>{{ item.addtime }}</div>
+				</div>
+				<div class="desc">
+					<div class="title">链接：</div>
+					<div class="link">
+						<a :href="item.viewlink" target="_blank">{{ item.viewlink }}</a>
+					</div>
+				</div>
+				<!-- <van-button type="primary" size="small" @click="copy(item.viewlink)">复制链接</van-button> -->
 			</div>
 		</div>
 	</div>
@@ -35,6 +45,11 @@ const onSearch = (e: string) => {
 	})
 }
 
+const onCancel = () => {
+	value.value = ""
+	list.value = []
+}
+
 const copy = (viewlink: string) => {
 	copyToClipboard(viewlink)
 }
@@ -52,23 +67,38 @@ const copy = (viewlink: string) => {
 		padding: 0 10px;
 
 		.item {
-			display: flex;
 			width: 100%;
 			padding: 14px 10px;
 			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-			align-items: center;
-			justify-content: space-between;
 
 			&:last-child {
 				border: 0;
 			}
 
 			.name {
-				max-width: 70%;
+				margin-bottom: 10px;
+				font-size: 18px;
+				font-weight: 600;
+			}
 
-				/* white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis; */
+			.desc {
+				display: flex;
+				align-items: center;
+				margin-bottom: 5px;
+
+				&:last-child {
+					margin: 0;
+				}
+			}
+
+			.title {
+				width: 80px;
+			}
+
+			.link {
+				width: calc(100% - 120px);
+				color: #1989fa;
+				word-wrap: break-word;
 			}
 		}
 	}
