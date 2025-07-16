@@ -78,6 +78,9 @@ importers:
       npm-run-all2:
         specifier: ^6.2.0
         version: 6.2.2
+      postcss-pxtorem:
+        specifier: ^6.1.0
+        version: 6.1.0(postcss@7.0.39)
       prettier:
         specifier: ^3.2.5
         version: 3.3.3
@@ -2227,6 +2230,11 @@ packages:
 
   postcss-media-query-parser@0.2.3:
     resolution: {integrity: sha512-3sOlxmbKcSHMjlUXQZKQ06jOswE7oVkXPxmZdoB1r5l0q6gTFTQSHxNxOrCccElbW7dxNytifNEo8qidX2Vsig==}
+
+  postcss-pxtorem@6.1.0:
+    resolution: {integrity: sha512-ROODSNci9ADal3zUcPHOF/K83TiCgNSPXQFSbwyPHNV8ioHIE4SaC+FPOufd8jsr5jV2uIz29v1Uqy1c4ov42g==}
+    peerDependencies:
+      postcss: ^8.0.0
 
   postcss-resolve-nested-selector@0.1.6:
     resolution: {integrity: sha512-0sglIs9Wmkzbr8lQwEyIzlDOOC9bGmfVKcJTaxv3vMmd3uo4o4DerC3En0bnmgceeql9BfC8hRkp7cg0fjdVqw==}
@@ -5189,6 +5197,10 @@ snapshots:
       postcss: 7.0.39
 
   postcss-media-query-parser@0.2.3: {}
+
+  postcss-pxtorem@6.1.0(postcss@7.0.39):
+    dependencies:
+      postcss: 7.0.39
 
   postcss-resolve-nested-selector@0.1.6: {}
 

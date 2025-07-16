@@ -39,6 +39,7 @@
 		"lint-staged": "^15.2.10",
 		"normalize.css": "^8.0.1",
 		"npm-run-all2": "^6.2.0",
+		"postcss-pxtorem": "^6.1.0",
 		"prettier": "^3.2.5",
 		"sass": "^1.78.0",
 		"stylelint": "13.13.1",

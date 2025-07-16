@@ -7,6 +7,7 @@ import AutoImport from "unplugin-auto-import/vite"
 import Components from "unplugin-vue-components/vite"
 import { createStyleImportPlugin, VantResolve } from "vite-plugin-style-import"
 import { VantResolver } from "@vant/auto-import-resolver"
+import postCssPxToRem from "postcss-pxtorem"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,7 +29,7 @@ export default defineConfig({
 			resolvers: [VantResolver()],
 			dts: "src/types/components.d.ts"
 		}),
-		// 自动引入element-plus样式
+		// 自动引入样式
 		createStyleImportPlugin({
 			resolves: [VantResolve()],
 			libs: [
@@ -43,6 +44,17 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			"@": fileURLToPath(new URL("./src", import.meta.url))
+		}
+	},
+	css: {
+		postcss: {
+			plugins: [
+				postCssPxToRem({
+					rootValue: 37.5, // Vant 官方根字体大小是 37.5
+					propList: ["*"],
+					selectorBlackList: [".norem"] // 过滤掉.norem-开头的class，不进行rem转换
+				})
+			]
 		}
 	}
 })
