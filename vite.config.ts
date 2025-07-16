@@ -5,8 +5,8 @@ import vueJsx from "@vitejs/plugin-vue-jsx"
 import vueDevTools from "vite-plugin-vue-devtools"
 import AutoImport from "unplugin-auto-import/vite"
 import Components from "unplugin-vue-components/vite"
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
-import { createStyleImportPlugin, ElementPlusResolve } from "vite-plugin-style-import"
+import { createStyleImportPlugin, VantResolve } from "vite-plugin-style-import"
+import { VantResolver } from "@vant/auto-import-resolver"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,7 +15,7 @@ export default defineConfig({
 		vueJsx(),
 		vueDevTools(),
 		AutoImport({
-			resolvers: [ElementPlusResolver()],
+			resolvers: [VantResolver()],
 			imports: ["vue", "vue-router", "pinia"],
 			dts: "src/types/auto-imports.d.ts",
 			eslintrc: {
@@ -25,19 +25,17 @@ export default defineConfig({
 			}
 		}),
 		Components({
-			resolvers: [ElementPlusResolver()],
+			resolvers: [VantResolver()],
 			dts: "src/types/components.d.ts"
 		}),
 		// 自动引入element-plus样式
 		createStyleImportPlugin({
-			resolves: [ElementPlusResolve()],
+			resolves: [VantResolve()],
 			libs: [
 				{
-					libraryName: "element-plus",
+					libraryName: "vant",
 					esModule: true,
-					resolveStyle: name => {
-						return `element-plus/theme-chalk/${name}.css`
-					}
+					resolveStyle: name => `vant/es/${name}/style/index`
 				}
 			]
 		})
