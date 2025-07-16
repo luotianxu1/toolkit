@@ -22,6 +22,7 @@
 
 <script setup lang="ts">
 import { copyToClipboard } from "@/utils/utils"
+import { Toast } from "vant"
 import axios from "axios"
 
 interface Item {
@@ -41,6 +42,8 @@ const onSearch = (e: string) => {
 		if (res.data.code === 200) {
 			console.log(res.data.data)
 			list.value = res.data.data
+		} else if (res.data.code === 404) {
+			Toast(res.data.msg)
 		}
 	})
 }
