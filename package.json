@@ -1,0 +1,74 @@
+{
+	"name": "base-vue3",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"commit": "git-cz & git push",
+		"commit-all": "git add . & git-cz & git push",
+		"lint:eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+		"lint:prettier": "prettier --write \"src/**/*.{js,ts,json,tsx,css,less,scss,vue,html,md}\"",
+		"lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+		"prepare": "husky"
+	},
+	"dependencies": {
+		"element-plus": "^2.8.2",
+		"pinia": "^2.1.7",
+		"vue": "^3.4.29",
+		"vue-router": "^4.3.3"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^19.5.0",
+		"@commitlint/config-conventional": "^19.5.0",
+		"@rushstack/eslint-patch": "^1.8.0",
+		"@tsconfig/node20": "^20.1.4",
+		"@types/node": "^20.14.5",
+		"@vitejs/plugin-vue": "^5.0.5",
+		"@vitejs/plugin-vue-jsx": "^4.0.0",
+		"@vue/eslint-config-prettier": "^9.0.0",
+		"@vue/eslint-config-typescript": "^13.0.0",
+		"@vue/tsconfig": "^0.5.1",
+		"consola": "^3.2.3",
+		"cz-customizable": "^7.2.1",
+		"eslint": "^8.57.0",
+		"eslint-plugin-vue": "^9.23.0",
+		"husky": "^9.1.6",
+		"lint-staged": "^15.2.10",
+		"normalize.css": "^8.0.1",
+		"npm-run-all2": "^6.2.0",
+		"prettier": "^3.2.5",
+		"sass": "^1.78.0",
+		"stylelint": "13.13.1",
+		"stylelint-config-prettier": "9.0.3",
+		"stylelint-config-standard": "22.0.0",
+		"stylelint-order": "4.1.0",
+		"stylelint-scss": "3.20.1",
+		"typescript": "~5.4.0",
+		"unplugin-auto-import": "^0.18.2",
+		"unplugin-vue-components": "^0.27.4",
+		"vite": "^5.3.1",
+		"vite-plugin-style-import": "^2.0.0",
+		"vite-plugin-vue-devtools": "^7.3.1",
+		"vue-tsc": "^2.0.21"
+	},
+	"config": {
+		"commitizen": {
+			"path": "node_modules/cz-customizable"
+		}
+	},
+	"lint-staged": {
+		"src/**/*.{ts,js,vue}": [
+			"eslint --fix",
+			"prettier --write",
+			"stylelint --fix",
+			"git add"
+		],
+		"*.{scss,less,styl,html}": [
+			"stylelint --fix",
+			"prettier --write",
+			"git add"
+		]
+	}
+}
